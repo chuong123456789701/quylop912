@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUỸ LỚP 9/12 — Thánh Chỉ 20/10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Ẩn hoàn toàn thanh cuộn (Scrollbar) để giao diện sạch và đỡ lag */
+::-webkit-scrollbar { display: none; }
+* { -ms-overflow-style: none; scrollbar-width: none; }
+
+:root{
+  --gold:#f5c451;
+  --gold-2:#c9962b;
+  --red:#8b1a1a;
+  --red-2:#b8262b;
+  --bg:#120809;
+  --card:#1d1113;
+  --card-2:#251518;
+  --text:#f4e8d4;
+  --muted:#b39c85;
+  --border:rgba(245,196,81,.22);
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(184,38,43,.28), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(245,196,81,.13), transparent 45%),
+    var(--bg);
+  color:var(--text); min-height:100vh; line-height:1.6; padding-bottom:40px; overflow-x:hidden;
+}
+.wrap{max-width:1100px; margin:0 auto; padding:0 16px; position:relative; z-index:1}
+h1,h2,h3,h4,.condensed{font-family:'Barlow Condensed',sans-serif; letter-spacing:.5px}
+
+/* ================= HEADER ================= */
+.hero{
+  text-align:center; padding:40px 20px 24px; position:relative;
+  border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(139,26,26,.35), transparent);
+}
+.seal{
+  width:60px; height:60px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center;
+  font-size:32px; font-weight:700; color:#ffe9a8;
+  background:linear-gradient(145deg,#b8262b,#6d0f12); border:2px solid var(--gold); border-radius:12px;
+  box-shadow:0 0 26px rgba(245,196,81,.35), inset 0 0 18px rgba(0,0,0,.5); transform:rotate(-4deg);
+}
+.hero h1{
+  font-size:clamp(24px,5vw,42px); letter-spacing:2px; font-weight:800; text-transform:uppercase;
+  background:linear-gradient(180deg,#fff3cd,#f5c451 45%,#b8860b);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:0 4px 24px rgba(245,196,81,.25);
+}
+.hero p{ margin-top:8px; color:var(--muted); font-size:clamp(12px,2.4vw,15px); letter-spacing:.5px; }
+
+/* ================= TICKER ================= */
+.topbar{ display:flex; align-items:stretch; height:40px; background:#0a0506; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+.live-pill{ display:flex; align-items:center; gap:7px; padding:0 16px; background:var(--red-2); font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:14px; letter-spacing:1.5px; color:#fff; position:relative; flex-shrink:0; }
+.live-pill::after{ content:''; position:absolute; right:-12px; top:0; bottom:0; border-left:24px solid var(--red-2); border-top:20px solid transparent; border-bottom:20px solid transparent; height:0; }
+.live-dot{ width:8px; height:8px; border-radius:50%; background:#fff; animation:pulseDot 1.2s infinite; }
+@keyframes pulseDot{0%,100%{opacity:1; transform:scale(1)}50%{opacity:.35; transform:scale(.85)}}
+.ticker{flex:1; overflow:hidden; position:relative; margin-left:24px; display:flex; align-items:center}
+.ticker-track{ display:inline-flex; white-space:nowrap; align-items:center; animation:scrollX 60s linear infinite; }
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{ display:inline-flex; align-items:center; gap:8px; padding:0 20px; font-size:12.5px; color:#e6d5ba; border-right:1px solid var(--border); font-weight:500; }
+.ticker-item b{color:var(--gold); font-weight:800}
+.ticker-item::before{content:'◆'; color:var(--red-2); font-size:9px}
+@keyframes scrollX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ================= NAV TABS ================= */
+.tabs{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; padding:14px 10px; position:sticky; top:40px; z-index:90; background:rgba(18,8,9,.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); margin-bottom:24px; align-items: center; }
+.tab{ text-decoration:none; color:var(--gold); font-weight:600; font-size:13.5px; padding:8px 16px; border:1px solid var(--border); border-radius:999px; background:rgba(245,196,81,.05); transition:.25s; white-space:nowrap; cursor:pointer; font-family:'Barlow Condensed',sans-serif; letter-spacing:.5px; }
+.tab:hover, .tab.active{ background:linear-gradient(135deg,var(--gold),var(--gold-2)); color:#2b1002; transform:translateY(-2px); box-shadow:0 6px 18px rgba(245,196,81,.3); }
+
+/* TAB STAT (Đã chi) */
+.tab-stat {
+  display: flex; align-items: center; gap: 8px; padding: 8px 16px;
+  border: 1px solid rgba(184,38,43,.5); border-radius: 999px;
+  background: rgba(184,38,43,.15); color: #ff7b7b;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px;
+  font-weight: 700; letter-spacing: .5px; white-space: nowrap;
+}
+.tab-stat span { color: #ff7b7b; font-weight: 800; font-size: 15px; }
+
+/* ================= PANELS & CARDS ================= */
+.panel{display:none; animation:fadeIn .3s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+
+.card{ background:linear-gradient(180deg,var(--card),var(--card-2)); border:1px solid var(--border); border-radius:16px; padding:24px 20px 28px; box-shadow:var(--shadow); margin-bottom:20px; }
+.card h2{ font-size:clamp(18px,3.4vw,24px); color:var(--gold); text-transform:uppercase; letter-spacing:1.4px; display:flex; align-items:center; gap:10px; padding-bottom:14px; margin-bottom:20px; border-bottom:1px dashed var(--border); }
+.note{ font-size:13px; color:var(--muted); margin-bottom:16px; font-style:italic; }
+
+/* ================= TABLE ================= */
+.table-wrap{ width:100%; overflow-x:auto; border-radius:12px; border:1px solid var(--border); padding: 6px 0; margin-bottom:16px; }
+table{ width:100%; border-collapse:separate; border-spacing:0; min-width:560px; font-size:15px; }
+thead th{ background:linear-gradient(180deg,#7d1418,#4a0a0d); color:var(--gold); text-transform:uppercase; font-size:12.5px; letter-spacing:1px; padding:14px 12px; text-align:left; white-space:nowrap; border-bottom:1px solid var(--border); }
+tbody td{ padding:12px; border-bottom:1px solid rgba(245,196,81,.09); vertical-align:middle; position:relative; }
+tbody tr:last-child td{border-bottom:none}
+.stt{ font-weight:700; color:var(--gold); width:56px; text-align:center; }
+.money{ font-weight:700; color:#7dffb0; white-space:nowrap; }
+.price{ font-weight:800; color:#ffd76e; font-size:16px; white-space:nowrap; }
+
+/* ================= TỔNG TIỀN BOX ================= */
+.total-box{ margin-top:16px; padding:18px 22px; background:linear-gradient(135deg, rgba(184,38,43,.28), rgba(245,196,81,.12)); border:1px solid var(--border); border-left:5px solid var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; box-shadow:0 6px 22px rgba(0,0,0,.35); position:relative; overflow:hidden; }
+.total-box::after{ content:""; position:absolute; top:-40px; right:-40px; width:140px; height:140px; background:radial-gradient(circle,rgba(245,196,81,.28),transparent 70%); pointer-events:none; }
+.total-label{ display:flex; align-items:center; gap:10px; font-size:15px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); text-shadow:0 2px 10px rgba(245,196,81,.35); }
+.total-label .icon{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:linear-gradient(145deg,#b8262b,#6d0f12); border:1px solid var(--gold); font-size:18px; box-shadow:0 0 14px rgba(245,196,81,.4); }
+.total-value{ font-size:clamp(22px,4vw,30px); font-weight:900; letter-spacing:1px; color:#7dffb0; text-shadow:0 0 18px rgba(125,255,176,.35); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.total-value.negative{ color:#ff7b7b; text-shadow:0 0 18px rgba(255,123,123,.4); }
+.total-sub{ width:100%; font-size:12.5px; color:var(--muted); font-style:italic; margin-top:2px; }
+
+/* Hộp Thực tế đang có */
+.total-box.thuc-te { border-left-color: #7dffb0; background: linear-gradient(135deg, rgba(46,204,113,.18), rgba(81,245,196,.08)); }
+.total-box.thuc-te::after { background: radial-gradient(circle, rgba(125,255,176,.2), transparent 70%); }
+.total-box.thuc-te .total-label { color: #7dffb0; text-shadow: 0 2px 10px rgba(125,255,176,.35); }
+.total-box.thuc-te .total-label .icon { background: linear-gradient(145deg,#1e8449,#145a32); border-color: #7dffb0; }
+.total-box.thuc-te .total-value { color: #7dffb0; }
+
+/* ================= TOOLBAR ================= */
+.toolbar{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; align-items:center}
+.toolbar .grow{flex:1; min-width:180px}
+input,select{ background:rgba(0,0,0,.3); border:1px solid var(--border); color:var(--text); padding:12px 16px; border-radius:8px; font-size:14px; font-family:inherit; outline:none; transition:.2s; width:100%; font-weight:500; }
+input:focus,select:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(245,196,81,.15); }
+
+/* ================= BADGE CẤP BẬC ================= */
+.badge{ display:inline-block; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.5px; white-space:nowrap; border:1px solid transparent; }
+.b-common{background:#3a3a3a;color:#d8d8d8;border-color:#555}
+.b-vip1{background:rgba(46,204,113,.15);color:#4ade80;border-color:rgba(74,222,128,.45)}
+.b-vip2{background:rgba(56,152,255,.15);color:#63b3ff;border-color:rgba(99,179,255,.45)}
+.b-vip3{background:rgba(168,85,247,.15);color:#c084fc;border-color:rgba(192,132,252,.45)}
+.b-vip4{background:rgba(249,115,22,.15);color:#fb923c;border-color:rgba(251,146,60,.45)}
+.b-prime{ background:linear-gradient(135deg,#f5c451,#b8262b); color:#fff8e1; border-color:#f5c451; box-shadow:0 0 12px rgba(245,196,81,.45); }
+.b-prime-promax{ background:linear-gradient(135deg,#ff2d95,#f5c451,#00e5ff); color:#1a0008; border-color:#ffe9a8; box-shadow:0 0 18px rgba(255,45,149,.55), 0 0 28px rgba(0,229,255,.35); animation:promaxGlow 2.4s ease-in-out infinite alternate; }
+@keyframes promaxGlow{ from{box-shadow:0 0 14px rgba(255,45,149,.5), 0 0 22px rgba(0,229,255,.25)} to{box-shadow:0 0 22px rgba(255,45,149,.85), 0 0 34px rgba(0,229,255,.55)} }
+.b-prime-ultra{ background:linear-gradient(90deg,#ffd700,#ff2d95,#00e5ff,#a855f7,#ffd700); background-size:300% 100%; color:#1a0008; border-color:#fff8dc; font-weight:900; text-shadow:0 1px 2px rgba(255,255,255,.4); box-shadow:0 0 20px rgba(255,215,0,.7), 0 0 34px rgba(255,45,149,.5), 0 0 44px rgba(0,229,255,.35); animation:ultraBadgeMove 3s linear infinite; }
+@keyframes ultraBadgeMove{ 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+.b-laybo { background: rgba(139, 26, 26, .3); color: #ff6b6b; border-color: rgba(255, 107, 107, .5); }
+.b-lovai { background: rgba(128, 128, 128, .2); color: #b0b0b0; border-color: rgba(176, 176, 176, .5); }
+
+/* =========================================================
+   ★★★ AURA SYSTEM (TỐI ƯU HIỆU NĂNG) ★★★
+   ========================================================= */
+.aura-cell{ position:relative; text-align:center; padding:18px 12px !important; vertical-align:middle !important; overflow:visible !important; background:transparent !important; }
+.aura-cell .ten{ 
+  position:relative; display:inline-block; padding:8px 18px; border-radius:12px; font-weight:900; font-size:14.5px; letter-spacing:0.5px; 
+  isolation:isolate; z-index:1; transition:transform .35s cubic-bezier(.2,.9,.4,1.4); cursor:default; white-space:nowrap; 
+  will-change: transform; transform: translateZ(0); /* Tăng tốc phần cứng, giảm lag */
+}
+.aura-cell .ten:hover{ transform:scale(1.12) translateY(-1px) translateZ(0); }
+.aura-cell .ten::before{ 
+  content:""; position:absolute; inset:-18px -26px; border-radius:50%; z-index:-2; filter:blur(16px); pointer-events:none; 
+  animation:auraBreathe 2.2s ease-in-out infinite; opacity:.85; will-change: transform, opacity;
+}
+.aura-cell .ten::after{ content:"✦"; position:absolute; left:22%; bottom:calc(100% - 2px); font-size:11px; z-index:-1; pointer-events:none; opacity:0; animation:sparkRise1 2.6s ease-out infinite; }
+.aura-cell::before{ content:"✧"; position:absolute; left:68%; bottom:35%; font-size:12px; pointer-events:none; opacity:0; z-index:2; animation:sparkRise2 3s ease-out infinite .9s; }
+.aura-cell::after{ content:"✦"; position:absolute; left:42%; bottom:25%; font-size:9px; pointer-events:none; opacity:0; z-index:2; animation:sparkRise3 3.4s ease-out infinite 1.5s; }
+@keyframes auraBreathe{ 0%,100%{opacity:.65; transform:scale(.94) translateZ(0)} 50% {opacity:1; transform:scale(1.06) translateZ(0)} }
+@keyframes sparkRise1{ 0% {opacity:0; transform:translate(0,0) scale(.4)} 15% {opacity:1} 100%{opacity:0; transform:translate(-6px,-48px) scale(1.3)} }
+@keyframes sparkRise2{ 0% {opacity:0; transform:translate(0,0) scale(.4)} 20% {opacity:1} 100%{opacity:0; transform:translate(14px,-58px) scale(1.4)} }
+@keyframes sparkRise3{ 0% {opacity:0; transform:translate(0,0) scale(.4)} 20% {opacity:1} 100%{opacity:0; transform:translate(-12px,-64px) scale(1.5)} }
+
+/* VIP 1 */
+.aura-vip1 .ten{ color:#e7fff1; background:linear-gradient(135deg, rgba(74,222,128,.28), rgba(34,197,94,.12)); border:1px solid rgba(74,222,128,.65); text-shadow: 0 0 4px #fff, 0 0 10px #4ade80, 0 0 22px #4ade80, 0 0 40px rgba(74,222,128,.65); box-shadow: 0 0 14px rgba(74,222,128,.55), 0 0 30px rgba(74,222,128,.32), inset 0 0 14px rgba(74,222,128,.28); }
+.aura-vip1 .ten::before{background:radial-gradient(ellipse, rgba(74,222,128,.85), transparent 70%)}
+.aura-vip1 .ten::after {color:#86efac; text-shadow:0 0 10px #4ade80}
+.aura-vip1::before{color:#86efac; text-shadow:0 0 10px #4ade80}
+.aura-vip1::after {color:#4ade80; text-shadow:0 0 8px #4ade80}
+
+/* VIP 2 */
+.aura-vip2 .ten{ color:#eaf6ff; background:linear-gradient(135deg, rgba(99,179,255,.3), rgba(56,152,255,.12)); border:1px solid rgba(99,179,255,.7); text-shadow: 0 0 4px #fff, 0 0 10px #63b3ff, 0 0 22px #63b3ff, 0 0 40px rgba(99,179,255,.65); box-shadow: 0 0 14px rgba(99,179,255,.6), 0 0 32px rgba(99,179,255,.35), inset 0 0 14px rgba(99,179,255,.3); }
+.aura-vip2 .ten::before{background:radial-gradient(ellipse, rgba(99,179,255,.88), transparent 70%)}
+.aura-vip2 .ten::after {color:#93c5fd; text-shadow:0 0 10px #63b3ff}
+.aura-vip2::before{color:#93c5fd; text-shadow:0 0 10px #63b3ff}
+.aura-vip2::after {color:#63b3ff; text-shadow:0 0 8px #63b3ff}
+
+/* VIP 3 */
+.aura-vip3 .ten{ color:#f6ecff; background:linear-gradient(135deg, rgba(192,132,252,.32), rgba(168,85,247,.14)); border:1px solid rgba(192,132,252,.72); text-shadow: 0 0 4px #fff, 0 0 10px #c084fc, 0 0 22px #a855f7, 0 0 42px rgba(192,132,252,.7); box-shadow: 0 0 16px rgba(192,132,252,.65), 0 0 34px rgba(168,85,247,.4), inset 0 0 16px rgba(192,132,252,.35); }
+.aura-vip3 .ten::before{background:radial-gradient(ellipse, rgba(192,132,252,.9), transparent 70%)}
+.aura-vip3 .ten::after {color:#e9d5ff; text-shadow:0 0 10px #c084fc}
+.aura-vip3::before{color:#e9d5ff; text-shadow:0 0 10px #c084fc}
+.aura-vip3::after {color:#c084fc; text-shadow:0 0 8px #c084fc}
+
+/* VIP 4 */
+.aura-vip4 .ten{ color:#fff0dc; background:linear-gradient(135deg, rgba(251,146,60,.32), rgba(249,115,22,.14)); border:1px solid rgba(251,146,60,.75); text-shadow: 0 0 4px #fff, 0 0 10px #fb923c, 0 0 24px #f97316, 0 0 44px rgba(251,146,60,.75); box-shadow: 0 0 18px rgba(251,146,60,.7), 0 0 36px rgba(249,115,22,.42), inset 0 0 16px rgba(251,146,60,.35); animation:vip4Flicker 2.4s ease-in-out infinite alternate; }
+.aura-vip4 .ten::before{ background:radial-gradient(ellipse, rgba(251,146,60,.95), rgba(249,115,22,.45) 55%, transparent 78%); }
+.aura-vip4 .ten::after {content:"🔥"; color:#fdba74; text-shadow:0 0 12px #fb923c; font-size:11px}
+.aura-vip4::before{content:"✦"; color:#fdba74; text-shadow:0 0 10px #fb923c}
+.aura-vip4::after {content:"✧"; color:#fb923c; text-shadow:0 0 8px #f97316}
+@keyframes vip4Flicker{ from{filter:brightness(1)} to {filter:brightness(1.18) saturate(1.25)} }
+
+/* PRIME */
+.aura-prime .ten{ color:#fff8e1; background:linear-gradient(135deg, rgba(245,196,81,.35), rgba(184,38,43,.18)); border:1px solid rgba(245,196,81,.85); text-shadow: 0 0 4px #fff, 0 0 10px #f5c451, 0 0 24px #f5c451, 0 0 44px rgba(245,196,81,.8), 0 0 68px rgba(184,38,43,.5); box-shadow: 0 0 20px rgba(245,196,81,.8), 0 0 42px rgba(245,196,81,.45), 0 0 60px rgba(184,38,43,.35), inset 0 0 18px rgba(245,196,81,.4); animation:primeShimmer 2.6s ease-in-out infinite; }
+.aura-prime .ten::before{ background:radial-gradient(ellipse, rgba(245,196,81,.95), rgba(184,38,43,.5) 55%, transparent 78%); }
+.aura-prime .ten::after {content:"✨"; color:#fff3c4; text-shadow:0 0 12px #f5c451; font-size:12px}
+.aura-prime::before{content:"✦"; color:#fff3c4; text-shadow:0 0 12px #f5c451}
+.aura-prime::after {content:"✧"; color:#f5c451; text-shadow:0 0 10px #b8262b}
+@keyframes primeShimmer{ 0%,100%{filter:brightness(1) saturate(1)} 50% {filter:brightness(1.22) saturate(1.35)} }
+
+/* PRIME PROMAX */
+.aura-promax .ten{ color:#ffeaf6; background:linear-gradient(135deg, rgba(255,45,149,.35), rgba(0,229,255,.25), rgba(245,196,81,.18)); background-size:220% 220%; border:1px solid rgba(255,233,168,.9); text-shadow: 0 0 4px #fff, 0 0 12px #ff2d95, 0 0 24px #ff2d95, 0 0 36px #00e5ff, 0 0 55px rgba(255,45,149,.7); box-shadow: 0 0 22px rgba(255,45,149,.75), 0 0 40px rgba(0,229,255,.5), 0 0 60px rgba(255,45,149,.35), inset 0 0 18px rgba(255,45,149,.35); animation:promaxShift 3.2s ease-in-out infinite, promaxGlow2 2s ease-in-out infinite alternate; }
+.aura-promax .ten::before{ background:conic-gradient(from 0deg, rgba(255,45,149,.9), rgba(0,229,255,.85), rgba(255,45,149,.9)); filter:blur(18px); inset:-22px -32px; animation:auraBreathe 2s ease-in-out infinite, spinSlow 7s linear infinite; }
+.aura-promax .ten::after {content:"💫"; color:#ffe9a8; font-size:12px; text-shadow:0 0 14px #ff2d95}
+.aura-promax::before{content:"✦"; color:#ff9ce0; text-shadow:0 0 12px #ff2d95}
+.aura-promax::after {content:"✧"; color:#7de9ff; text-shadow:0 0 12px #00e5ff}
+@keyframes promaxShift{ 0%,100%{background-position:0% 50%} 50% {background-position:100% 50%} }
+@keyframes promaxGlow2{ from{filter:brightness(1) saturate(1.1)} to {filter:brightness(1.2) saturate(1.4)} }
+
+/* PRIME ULTRA */
+.aura-ultra .ten{ color:#fffde6; background: linear-gradient(135deg, rgba(255,215,0,.35), rgba(255,45,149,.28), rgba(168,85,247,.28), rgba(0,229,255,.28), rgba(255,215,0,.35)); background-size:300% 300%; border:1.5px solid transparent; background-clip:padding-box; text-shadow: 0 0 5px #fff, 0 0 12px #ffd700, 0 0 24px #ffd700, 0 0 38px #ff2d95, 0 0 55px #00e5ff, 0 0 80px rgba(168,85,247,.85); box-shadow: 0 0 26px rgba(255,215,0,.9), 0 0 50px rgba(255,45,149,.6), 0 0 80px rgba(0,229,255,.5), inset 0 0 22px rgba(255,215,0,.4); animation:ultraShine 2.4s ease-in-out infinite alternate, ultraBgMove 5s linear infinite; }
+.aura-ultra .ten::before{ content:""; position:absolute; inset:-24px -34px; border-radius:50%; z-index:-2; background:conic-gradient(from 0deg, rgba(255,215,0,.95), rgba(255,45,149,.9), rgba(168,85,247,.9), rgba(0,229,255,.9), rgba(255,215,0,.95)); filter:blur(20px); pointer-events:none; animation:auraBreathe 2s ease-in-out infinite, spinSlow 6s linear infinite; }
+.aura-ultra .ten::after{ content:"✦"; position:absolute; left:22%; bottom:calc(100% - 2px); font-size:13px; color:#fff8dc; text-shadow:0 0 12px #ffd700, 0 0 20px #ff2d95, 0 0 30px #00e5ff; z-index:-1; pointer-events:none; opacity:0; animation:sparkRise1 2.2s ease-out infinite; }
+.aura-ultra::before{ content:"👑"; position:absolute; left:50%; bottom:calc(100% - 10px); transform:translateX(-50%) translateZ(0); font-size:16px; z-index:3; pointer-events:none; filter: drop-shadow(0 0 8px #ffd700) drop-shadow(0 0 16px #ff2d95); animation:crownFloat 2.4s ease-in-out infinite; }
+.aura-ultra::after{ content:"✦"; position:absolute; left:70%; bottom:30%; font-size:14px; color:#fff8dc; text-shadow:0 0 12px #ffd700, 0 0 22px #ff2d95, 0 0 32px #a855f7; pointer-events:none; opacity:0; z-index:3; animation:sparkRise2 2.8s ease-out infinite .7s; }
+@keyframes ultraShine{ from{filter:brightness(1) saturate(1.15)} to {filter:brightness(1.3) saturate(1.55)} }
+@keyframes ultraBgMove{ 0% {background-position:0% 50%} 100%{background-position:300% 50%} }
+@keyframes spinSlow{ from{transform:rotate(0deg)} to {transform:rotate(360deg)} }
+@keyframes crownFloat{ 0%,100%{opacity:.9; transform:translate(-50%,0) scale(1) translateZ(0); filter:drop-shadow(0 0 8px #ffd700) drop-shadow(0 0 16px #ff2d95)} 50% {opacity:1; transform:translate(-50%,-6px) scale(1.2) translateZ(0); filter:drop-shadow(0 0 14px #ffd700) drop-shadow(0 0 24px #ff2d95) drop-shadow(0 0 30px #00e5ff)} }
+
+/* ================= LEADERBOARD HIGHLIGHT ================= */
+.top1 td{background:linear-gradient(90deg,rgba(245,196,81,.16),transparent)!important}
+.top2 td{background:linear-gradient(90deg,rgba(192,192,192,.12),transparent)!important}
+.top3 td{background:linear-gradient(90deg,rgba(205,127,50,.12),transparent)!important}
+.hang{ font-weight:800; font-size:16px; text-align:center; width:70px; color:var(--gold); }
+
+/* ================= ƯU ĐÃI ================= */
+.uu-dai-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; }
+.uu-dai-card{ position:relative; background:linear-gradient(180deg,rgba(245,196,81,.06),rgba(245,196,81,.02)); border:1px solid var(--border); border-radius:14px; padding:20px 18px 22px; transition:.28s; overflow:hidden; }
+.uu-dai-card:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(245,196,81,.18); }
+.uu-dai-card h3{ display:flex; align-items:center; gap:10px; font-size:16px; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px dashed var(--border); }
+.uu-dai-card ul{ list-style:none; display:flex; flex-direction:column; gap:9px; }
+.uu-dai-card li{ position:relative; padding-left:24px; font-size:14px; line-height:1.6; color:var(--text); }
+.uu-dai-card li::before{ content:"✦"; position:absolute; left:0; top:0; color:var(--gold); font-size:13px; }
+.uu-dai-card li b{color:#ffd76e}
+.uu-dai-card .highlight-li{ background:rgba(245,196,81,.1); border-left:3px solid var(--gold); border-radius:6px; padding:6px 10px 6px 22px; margin-left:-4px; }
+.uu-dai-card .highlight-li::before{left:8px}
+.uu-dai-card.prime-promax{ background:linear-gradient(160deg,rgba(255,45,149,.12),rgba(0,229,255,.08),rgba(245,196,81,.08)); border-color:rgba(255,45,149,.45); }
+.uu-dai-card.prime-promax h3{color:#ffe9a8;text-shadow:0 0 12px rgba(255,45,149,.5)}
+.uu-dai-card.prime-ultra{ background:linear-gradient(160deg, rgba(255,215,0,.14), rgba(255,45,149,.14), rgba(0,229,255,.12), rgba(168,85,247,.12)); border-color:rgba(255,215,0,.55); box-shadow:0 0 30px rgba(255,215,0,.18), 0 0 50px rgba(168,85,247,.12); animation:ultraCardPulse 3s ease-in-out infinite alternate; }
+.uu-dai-card.prime-ultra h3{ color:#fffbe6; text-shadow: 0 0 12px rgba(255,215,0,.7), 0 0 22px rgba(255,45,149,.6), 0 0 30px rgba(0,229,255,.5); }
+@keyframes ultraCardPulse{ from{box-shadow:0 0 22px rgba(255,215,0,.18), 0 0 40px rgba(168,85,247,.12)} to {box-shadow:0 0 34px rgba(255,215,0,.4), 0 0 60px rgba(168,85,247,.28), 0 0 80px rgba(0,229,255,.18)} }
+.uu-dai-tag{ display:inline-block; margin-top:14px; padding:5px 12px; border-radius:999px; font-size:11.5px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; background:rgba(245,196,81,.12); color:var(--gold); border:1px solid var(--border); }
+.prime-promax .uu-dai-tag{ background:linear-gradient(135deg,#ff2d95,#00e5ff); color:#0a0010; border-color:#ffe9a8; }
+.prime-ultra .uu-dai-tag{ background:linear-gradient(90deg,#ffd700,#ff2d95,#00e5ff,#a855f7,#ffd700); background-size:300% 100%; color:#1a0008; border-color:#fff8dc; animation:ultraBadgeMove 3s linear infinite; }
+
+/* Aura Preview trong Ưu Đãi */
+.aura-preview{ margin-top:14px; padding:26px 14px 30px; background: radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.04), transparent 60%), rgba(0,0,0,.42); border:1px dashed var(--border); border-radius:14px; text-align:center; position:relative; overflow:hidden; min-height:110px; }
+.aura-preview .aura-label{ display:block; font-size:11px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+.aura-preview .aura-cell{ display:inline-block; padding:0 !important; text-align:center; position:relative; }
+.aura-preview .ten{ font-size:15px; padding:9px 20px; }
+
+/* ================= NẠP & THỜI HẠN ================= */
+.nap-info{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-bottom:22px; }
+.nap-box{ background:rgba(245,196,81,.05); border:1px solid var(--border); border-radius:14px; padding:18px 20px; display: flex; flex-direction: column; justify-content: center;}
+.nap-box h3{ color:var(--gold); font-size:15px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px dashed var(--border); text-align: center;}
+.nap-box p{ font-size:14.5px; margin-bottom:8px; color:var(--text); }
+.nap-box .label{ color:var(--muted); font-size:13px; display:inline-block; min-width:120px; }
+.nap-box .value{ font-weight:700; color:#ffd76e; word-break:break-all; }
+
+/* CSS CHO MÃ QR */
+.qr-img {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+  background: #fff;
+  padding: 8px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.qr-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.warning-box{ background:linear-gradient(135deg, rgba(184,38,43,.25), rgba(139,26,26,.15)); border:1px solid rgba(245,196,81,.5); border-radius:14px; padding:16px 18px; margin-top:6px; }
+.warning-box p{ font-size:14.5px; color:#ffe9a8; line-height:1.7; }
+.warning-box strong{color:#fff}
+.highlight{ background:linear-gradient(135deg,var(--gold),var(--gold-2)); color:#2b1002 !important; padding:2px 8px; border-radius:6px; font-weight:800; }
+
+.empty{ color:var(--muted); font-size:14px; text-align:center; padding:30px 0; font-style:italic; }
+
+@media(max-width:600px){
+  .card{padding:18px 12px 22px;border-radius:12px}
+  table{font-size:13.5px;min-width:520px}
+  thead th,tbody td{padding:10px 8px}
+  .tab{font-size:12.5px;padding:8px 13px}
+  .tab-stat{font-size:12.5px;padding:8px 13px}
+  .aura-cell .ten{font-size:13px;padding:6px 12px}
+  .aura-preview .ten{font-size:14px;padding:8px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TICKER ============ -->
+<div class="topbar">
+  <div class="live-pill"><span class="live-dot"></span>LIVE</div>
+  <div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ HEADER ============ -->
+  <header class="hero">
+    <div class="seal">敕</div>
+    <h1>Quỹ Lớp 9/12</h1>
+    <p>Thánh Chỉ 20/10 · Bảng phong thần · Minh bạch tài chính</p>
+  </header>
+
+  <!-- ============ TABS ============ -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="chitiet">📜 Nạp chi tiết</button>
+    <button class="tab" data-tab="top">🏆 Đua top nạp</button>
+    <button class="tab" data-tab="uudai">🎁 Ưu đãi</button>
+    <button class="tab" data-tab="thoihan">💰 Nạp &amp; thời hạn</button>
+    <!-- TAB STAT: Đã chi -->
+    <div class="tab-stat">💸 Đã chi: <span id="tab-da-chi">0đ</span></div>
+  </nav>
+
+  <!-- ============ TAB 1: CHI TIẾT ============ -->
+  <section class="panel active" id="tab-chitiet">
+    <div class="card">
+      <h2><span class="icon">📜</span> Nạp Chi Tiết</h2>
+      <p class="note">Danh sách 47 thành viên — linh khí hiển thị theo cấp bậc.</p>
+      <div class="toolbar">
+        <div class="grow"><input type="text" id="searchInput" placeholder="🔍 Tìm tên thành viên..."></div>
+        <select id="sortSelect" style="width:auto">
+          <option value="default">Thứ tự gốc</option>
+          <option value="money">Sắp xếp: Số tiền ↓</option>
+          <option value="name">Sắp xếp: Tên A → Z</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>STT</th><th>Tên</th><th>Chi tiết</th><th>Cấp bậc</th></tr>
+          </thead>
+          <tbody id="tbodyChiTiet"></tbody>
+        </table>
+      </div>
+      
+      <!-- TỔNG TIỀN -->
+      <div class="total-box">
+        <div class="total-label"><span class="icon">💰</span> Tổng tiền</div>
+        <div class="total-value" id="tong-tien">0đ</div>
+        <div class="total-sub" id="tong-tien-sub">Đang tính toán...</div>
+      </div>
+
+      <!-- THỰC TẾ ĐANG CÓ -->
+      <div class="total-box thuc-te">
+        <div class="total-label"><span class="icon">🏦</span> Thực tế đang có</div>
+        <div class="total-value" id="tien-thuc-te">0đ</div>
+        <div class="total-sub" id="tien-thuc-te-sub">Đang tính toán...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2: TOP ============ -->
+  <section class="panel" id="tab-top">
+    <div class="card">
+      <h2><span class="icon">🏆</span> Bảng Đua Top Nạp</h2>
+      <p class="note">Chỉ hiển thị Top 10 người nạp cao nhất.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Hạng</th><th>Tên</th><th>Số tiền nạp</th><th>Cấp bậc</th></tr>
+          </thead>
+          <tbody id="tbodyTop"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 3: ƯU ĐÃI ============ -->
+  <section class="panel" id="tab-uudai">
+    <div class="card" style="background:transparent; border:none; padding:0; box-shadow:none;">
+      <div style="text-align:center; margin-bottom:24px;">
+        <h2 style="color:var(--gold); font-size:24px; margin-bottom:8px; border:none; justify-content:center;">Ưu Đãi Theo Cấp Bậc</h2>
+        <p style="color:var(--muted); font-size:14px;">Chi tiết quyền lợi + linh khí nhận được theo từng cấp bậc khi nạp.</p>
+      </div>
+      <div class="uu-dai-list" id="uuDaiGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 4: NẠP & THỜI HẠN ============ -->
+  <section class="panel" id="tab-thoihan">
+    <div class="card">
+      <h2><span class="icon">💰</span> Nạp &amp; Thời Hạn</h2>
+      <p class="note">Thông tin nạp tiền và thời hạn áp dụng.</p>
+      
+      <!-- ĐÃ CẬP NHẬT: GRID 3 CỘT CHO THÔNG TIN, QR VÀ THỜI HẠN -->
+      <div class="nap-info">
+        
+        <!-- 1. Thông tin ngân hàng -->
+        <div class="nap-box">
+          <h3>📌 Số Tài Khoản</h3>
+          <p><span class="label">Nơi nạp:</span> <span class="value">Ngân hàng / Ví điện tử</span></p>
+          <p><span class="label">Chủ tài khoản:</span> <span class="value">TRUONG THU QUY 9/12</span></p>
+          <p><span class="label">Số tài khoản:</span> <span class="value">0123456789</span></p>
+          <p><span class="label">Ngân hàng:</span> <span class="value">Vietcombank (VCB)</span></p>
+          <p><span class="label">Nội dung CK:</span> <span class="value">[Tên] - Quỹ 9/12</span></p>
+        </div>
+
+        <!-- 2. Mã QR Chuyển Khoản -->
+        <div class="nap-box" style="text-align:center;">
+          <h3>📸 Mã QR Chuyển Khoản</h3>
+          <!-- THAY LINK ẢNH QR CỦA BẠN VÀO ĐÂY -->
+          <img class="qr-img" src="https://api.vietqr.io/image/970436-0123456789-compact2.png?accountName=TRUONG%20THU%20QUY%209/12&amount=&addInfo=Quy%209/12" alt="Mã QR Chuyển Khoản">
+          <p class="qr-note">Quét mã để chuyển khoản nhanh</p>
+        </div>
+
+        <!-- 3. Thời hạn nộp -->
+        <div class="nap-box" style="text-align:center;">
+          <h3>⏰ Thời Hạn Nộp</h3>
+          <p style="margin-top:20px; font-size:18px; font-weight:bold; color:var(--gold);" id="hanNapText">—</p>
+          <p style="font-size:24px; font-weight:900; color:#ff7b7b; margin-top:10px;" id="countdown">—</p>
+        </div>
+
+      </div>
+      <div class="warning-box">
+        <p>⚠️ <strong>LƯU Ý QUAN TRỌNG:</strong> Sau khi chuyển tiền xong, vui lòng <span class="highlight">chụp màn hình</span> giao dịch và gửi trực tiếp cho <strong>Thủ quỹ / Lớp trưởng</strong> để được xác nhận nạp.</p>
+      </div>
+    </div>
+  </section>
+  
+</div>
+
+<script>
+/* =========================================================
+   DỮ LIỆU GỐC (ĐÃ CẬP NHẬT SỐ TIỀN THEO YÊU CẦU)
+   ========================================================= */
+const DEFAULT_DATA = {
+  hocSinh: [
+    { ten: 'Trần Duy Anh',           nap: 15000 },
+    { ten: 'Phạm Lê Tú Anh',         nap: 0 },
+    { ten: 'Trần Gia Bảo',           nap: 20000 },
+    { ten: 'Đinh Viết Chương',       nap: 20000 },
+    { ten: 'Bùi Thị Ngọc Diễm',      nap: 0 },
+    { ten: 'Hồ Hoàng Duy',           nap: 32000 },
+    { ten: 'Nguyễn Tín Đạt',         nap: 30000 },
+    { ten: 'Nguyễn Võ Hà Giang',     nap: 0 },
+    { ten: 'Võ Minh Hải',            nap: 17000 },
+    { ten: 'Trần Gia Hân',           nap: 0 },
+    { ten: 'Phạm Công Hiếu',         nap: 10000 },
+    { ten: 'Nguyễn Thị Thu Hòa',     nap: 0 },
+    { ten: 'Nguyễn Bảo Huy',         nap: 20000 },
+    { ten: 'Trương Đức Huy',         nap: 0 },
+    { ten: 'Võ Khánh Hưng',          nap: 14000 },
+    { ten: 'Nguyễn Minh Khang',      nap: 15000 },
+    { ten: 'Trần Đăng Khoa',         nap: 0 },
+    { ten: 'Trương Tuấn Kiệt',       nap: 25000 },
+    { ten: 'Đặng Khánh Linh',        nap: 0 },
+    { ten: 'Huỳnh Gia Linh',         nap: 0 },
+    { ten: 'Lê Gia Linh',            nap: 0 },
+    { ten: 'Nguyễn Thị Khánh Linh',  nap: 0 },
+    { ten: 'Nguyễn Trần Phương Linh',nap: 0 },
+    { ten: 'Nguyễn Hoàng Long',      nap: 20000 },
+    { ten: 'Trần Thanh Mai',         nap: 0 },
+    { ten: 'Phạm Hải Minh',          nap: 25000 },
+    { ten: 'Nguyễn Kim Ngân',        nap: 0 },
+    { ten: 'Đinh Khôi Nguyên',       nap: 20000 },
+    { ten: 'Phùng Lê Anh Nguyên',    nap: 0 },
+    { ten: 'Tô Ngọc Nguyên',         nap: 25000 },
+    { ten: 'Nguyễn Thành Nhân',      nap: 30000 },
+    { ten: 'Nguyễn Ngọc Nhi',        nap: 0 },
+    { ten: 'Trần Phạm Bảo Nhi',      nap: 0 },
+    { ten: 'Đặng Trần Ngọc Nhung',   nap: 0 },
+    { ten: 'Vũ Hồng Phong',          nap: 22000 },
+    { ten: 'Bùi Nguyễn Văn Phúc',    nap: 18000 },
+    { ten: 'Nguyễn Hoàng Quân',      nap: 15000 },
+    { ten: 'Nguyễn Đăng Diễm Quỳnh', nap: 0 },
+    { ten: 'Triệu Kim Thái',         nap: 15000 },
+    { ten: 'Trần Ngô Phương Thảo',   nap: 0 },
+    { ten: 'Lưu Trường Thiện',       nap: 5000 },
+    { ten: 'Lê Phương An Thy',       nap: 0 },
+    { ten: 'Nguyễn Lê Quỳnh Thy',    nap: 0 },
+    { ten: 'Nguyễn Thị Bảo Trân',    nap: 0 },
+    { ten: 'Trần Quý Vương',         nap: 16000 },
+    { ten: 'Phạm Hải Yến',           nap: 0 },
+    { ten: 'Huy Hoàng',              nap: 16000 }
+  ],
+  daTieu: 300000,        /* Sửa số tiền đã chi ở đây */
+  hanNap: '2026-12-31'   /* Sửa hạn nộp ở đây */
+};
+
+/* =========================================================
+   CẤP BẬC & LOGIC MAP
+   ========================================================= */
+const CAP_BAC = [
+  { ten:'Prime Ultra', min:30000, badge:'b-prime-ultra', aura:'aura-ultra' },
+  { ten:'Prime Promax', min:25000, badge:'b-prime-promax', aura:'aura-promax' },
+  { ten:'Prime',       min:20000, badge:'b-prime', aura:'aura-prime' },
+  { ten:'VIP 4',       min:19000, badge:'b-vip4', aura:'aura-vip4' },
+  { ten:'VIP 3',       min:18000, badge:'b-vip3', aura:'aura-vip3' },
+  { ten:'VIP 2',       min:17000, badge:'b-vip2', aura:'aura-vip2' },
+  { ten:'VIP 1',       min:16000, badge:'b-vip1', aura:'aura-vip1' },
+  { ten:'Phổ thông',   min:15000, badge:'b-common', aura:'' },
+  { ten:'Lỏ vãi',      min:1,     badge:'b-lovai', aura:'' },
+  { ten:'Lạy bố',      min:0,     badge:'b-laybo', aura:'' }
+];
+function getCapBac(n){
+  return CAP_BAC.find(c => n >= c.min) || CAP_BAC[CAP_BAC.length - 1];
+}
+
+/* =========================================================
+   TIỆN ÍCH
+   ========================================================= */
+const fmt = new Intl.NumberFormat('vi-VN');
+function formatTien(n){ return fmt.format(n) + 'đ'; }
+function formatDateOnly(s){ const d = new Date(s); return isNaN(d) ? '—' : d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'}); }
+function tongNap(){ return DEFAULT_DATA.hocSinh.reduce((s,h)=> s + h.nap, 0); }
+
+/* =========================================================
+   TICKER
+   ========================================================= */
+function renderTicker(){
+  const el = document.getElementById('tickerTrack');
+  const sorted = [...DEFAULT_DATA.hocSinh].sort((a,b)=>b.nap-a.nap);
+  
+  let items = [
+    `Tổng quỹ hiện tại: <b>${formatTien(tongNap() - DEFAULT_DATA.daTieu)}</b>`,
+    `Hạn nộp quỹ: <b>${formatDateOnly(DEFAULT_DATA.hanNap)}</b>`
+  ];
+  
+  if(sorted[0].nap > 0) {
+    items.push(`Top 1: <b>${sorted[0].ten}</b> — ${formatTien(sorted[0].nap)}`);
+    if(sorted[1] && sorted[1].nap > 0) items.push(`Top 2: <b>${sorted[1].ten}</b> — ${formatTien(sorted[1].nap)}`);
+    if(sorted[2] && sorted[2].nap > 0) items.push(`Top 3: <b>${sorted[2].ten}</b> — ${formatTien(sorted[2].nap)}`);
+  }
+  
+  items.push(`Nạp càng nhiều — Cấp bậc càng cao — Linh khí càng mạnh`);
+  
+  const html = items.map(x => `<span class="ticker-item">${x}</span>`).join('');
+  el.innerHTML = html + html;
+}
+
+/* =========================================================
+   TẠO Ô TÊN CÓ AURA
+   ========================================================= */
+function tenCellHTML(ten, auraClass) {
+  if (!auraClass) {
+    return `<td class="ten" style="text-align:center; font-weight:600;">${ten}</td>`;
+  }
+  return `<td class="aura-cell ${auraClass}"><span class="ten">${ten}</span></td>`;
+}
+
+/* =========================================================
+   BẢNG CHI TIẾT & TÍNH TOÁN TỔNG TIỀN
+   ========================================================= */
+let sortBy = 'default';
+function renderChiTiet(){
+  const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+  let rows = DEFAULT_DATA.hocSinh.map((h,i)=>({ ...h, idx: i + 1 }));
+  if(q) rows = rows.filter(r => r.ten.toLowerCase().includes(q));
+  
+  if(sortBy === 'money') rows.sort((a,b)=> b.nap - a.nap);
+  else if(sortBy === 'name') rows.sort((a,b)=> a.ten.localeCompare(b.ten,'vi'));
+  else rows.sort((a,b)=> a.idx - b.idx);
+
+  const tbody = document.getElementById('tbodyChiTiet');
+  tbody.innerHTML = rows.length ? rows.map(r => {
+    const cb = getCapBac(r.nap);
+    return `<tr>
+      <td class="stt">${String(r.idx).padStart(2,'0')}</td>
+      ${tenCellHTML(r.ten, cb.aura)}
+      <td style="text-align:center; font-weight:bold; color:#ffd76e;">${r.nap > 0 ? formatTien(r.nap) : '0đ'}</td>
+      <td style="text-align:center;"><span class="badge ${cb.badge}">${cb.ten}</span></td>
+    </tr>`;
+  }).join('') : '<tr><td colspan="4" class="empty">KHÔNG TÌM THẤY THÀNH VIÊN</td></tr>';
+
+  // Cập nhật tổng tiền
+  let tong = tongNap();
+  let thucTe = tong - DEFAULT_DATA.daTieu;
+  let daTieu = DEFAULT_DATA.daTieu;
+
+  document.getElementById("tong-tien").textContent = formatTien(tong);
+  document.getElementById("tong-tien-sub").textContent = `Tổng cộng từ ${DEFAULT_DATA.hocSinh.length} thành viên`;
+  
+  document.getElementById("tien-thuc-te").textContent = formatTien(thucTe);
+  document.getElementById("tien-thuc-te-sub").textContent = `Tổng nạp (${formatTien(tong)}) - Đã chi (${formatTien(daTieu)})`;
+  
+  document.getElementById("tab-da-chi").textContent = formatTien(daTieu);
+}
+
+/* =========================================================
+   BẢNG ĐUA TOP (TOP 10)
+   ========================================================= */
+function renderTop(){
+  const sorted = DEFAULT_DATA.hocSinh.map((h,i)=>({...h, idx:i+1}))
+                              .filter(h => h.nap > 0)
+                              .sort((a,b)=> b.nap - a.nap);
+  const medal = ["🥇", "🥈", "🥉"];
+  
+  const tbody = document.getElementById('tbodyTop');
+  tbody.innerHTML = sorted.slice(0, 10).map((r, i) => {
+    const cb = getCapBac(r.nap);
+    const rankClass = i < 3 ? `top${i+1}` : '';
+    const rankTxt = medal[i] || `#${i + 1}`;
+    return `<tr class="${rankClass}">
+      <td class="hang">${rankTxt}</td>
+      ${tenCellHTML(r.ten, cb.aura)}
+      <td class="money" style="text-align:center;">${formatTien(r.nap)}</td>
+      <td style="text-align:center;"><span class="badge ${cb.badge}">${cb.ten}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+/* =========================================================
+   RENDER ƯU ĐÃI
+   ========================================================= */
+const UU_DAI = [
+  { ten: 'VIP 1', price: '16.000đ', auraClass: 'aura-vip1', badge: 'b-vip1', color: '#4ade80',
+    quyen: ['Được nghe Chương voice tên anh <tên bạn>.'], note: null, tag: 'Gói khởi đầu', cardClass: '' },
+  { ten: 'VIP 2', price: '17.000đ', auraClass: 'aura-vip2', badge: 'b-vip2', color: '#63b3ff',
+    quyen: ['Được nghe Chương voice tên anh <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.'], note: null, tag: 'Có quà 20/10', cardClass: '' },
+  { ten: 'VIP 3', price: '18.000đ', auraClass: 'aura-vip3', badge: 'b-vip3', color: '#c084fc',
+    quyen: ['Được nghe Chương voice tên anh <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.'], note: null, tag: 'Quà 20/10', cardClass: '' },
+  { ten: 'VIP 4', price: '19.000đ', auraClass: 'aura-vip4', badge: 'b-vip4', color: '#fb923c',
+    quyen: ['Được nghe Chương voice tên anh <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.', 'Được miễn 2 lần ghi tên phạt trên bảng (nhận 2 lần / tuần, hồi lại sau mỗi tuần → 2 tuần = 4 lần).'], note: null, tag: 'Miễn phạt 2 lần/tuần', cardClass: '' },
+  { ten: 'Prime', price: '20.000đ', auraClass: 'aura-prime', badge: 'b-prime', color: '#f5c451',
+    quyen: ['Được nghe Chương voice tên bố <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.', 'Được miễn 4 lần ghi tên phạt trên bảng (nhận 4 lần / tuần, hồi lại sau mỗi tuần → 2 tuần = 8 lần).'], note: null, tag: 'Đỉnh cao — Voice tên bố', cardClass: '' },
+  { ten: 'Prime Promax', price: '25.000đ trở lên', auraClass: 'aura-promax', badge: 'b-prime-promax', color: '#ff9ff3',
+    quyen: ['Được nghe Chương voice tên bố <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.', 'Được miễn 5 lần ghi tên phạt trên bảng (nhận 5 lần / tuần, hồi lại sau mỗi tuần → 2 tuần = 10 lần).'], note: null, tag: '🔥 Cấp bậc tối thượng', cardClass: 'prime-promax' },
+  { ten: 'Prime Ultra', price: '30.000đ trở lên', auraClass: 'aura-ultra', badge: 'b-prime-ultra', color: '#fff',
+    quyen: ['Được nghe Chương voice tên bố <tên bạn>.', 'Được lựa chọn và tặng quà 20/10 cho người con gái bạn muốn.', 'Được miễn 7 lần ghi tên phạt trên bảng (nhận 7 lần / tuần, hồi lại sau mỗi tuần → 2 tuần = 14 lần).'], note: null, tag: '👑 Bậc cao nhất — Thần thánh', cardClass: 'prime-ultra' }
+];
+
+function renderUuDai(){
+  document.getElementById('uuDaiGrid').innerHTML = UU_DAI.map(u => `
+    <div class="uu-dai-card ${u.cardClass}">
+      <h3><span class="badge ${u.badge}" style="font-size:10px; padding:2px 8px;">${u.ten}</span> — ${u.price}</h3>
+      <ul>${u.quyen.map((q, i) => `<li class="${i === u.quyen.length - 1 && u.quyen.length > 2 ? 'highlight-li' : ''}">${q}</li>`).join('')}</ul>
+      <div class="aura-preview">
+        <span class="aura-label">✨ Linh Khí — ${u.ten}</span>
+        <div class="aura-cell ${u.auraClass}">
+          <span class="ten">Tên bạn</span>
+        </div>
+      </div>
+      <span class="uu-dai-tag">${u.tag}</span>
+    </div>
+  `).join('');
+}
+
+/* =========================================================
+   THỜI HẠN
+   ========================================================= */
+function renderThoiHan(){
+  document.getElementById('hanNapText').textContent = formatDateOnly(DEFAULT_DATA.hanNap);
+  const cd = document.getElementById('countdown');
+  const now = new Date();
+  const han = new Date(DEFAULT_DATA.hanNap + 'T23:59:59');
+  if(isNaN(han)){ cd.textContent = '—'; return; }
+  const diff = Math.ceil((han - now) / 86400000);
+  if(diff > 0)        cd.textContent = 'Còn ' + diff + ' ngày';
+  else if(diff === 0) cd.textContent = 'Hôm nay là hạn cuối!';
+  else                cd.textContent = 'Đã quá hạn ' + Math.abs(diff) + ' ngày';
+  cd.style.color = diff > 0 ? '#7dffb0' : '#ff7b7b';
+}
+
+/* =========================================================
+   TABS LOGIC
+   ========================================================= */
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', renderChiTiet);
+document.getElementById('sortSelect').addEventListener('change', e => {
+  sortBy = e.target.value;
+  renderChiTiet();
+});
+
+/* =========================================================
+   KHỞI CHẠY
+   ========================================================= */
+renderChiTiet();
+renderTop();
+renderUuDai();
+renderThoiHan();
+renderTicker();
+</script>
+</body>
+</html>
